@@ -5,6 +5,9 @@ const productSchema = new mongoose.Schema({
     price: Number,
     unit_type: String,
     stock: Number,
+    category: String,
+    cost: Number,
+    retail_price: Number,
     other: {},
 });
 
