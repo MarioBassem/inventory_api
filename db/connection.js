@@ -1,12 +1,10 @@
+const {Sequelize} = require('sequelize');
 
-const mongoose = require('mongoose');
-
-const connectDB = async () => {
-   await mongoose.connect('mongodb://localhost:27017/inventory', {
-       useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
-    console.log('Mongodb Connected...');
-}
-
-module.exports = connectDB;
+module.exports = new Sequelize({
+    username: 'superluigi',
+    password: 'password',
+    dialect: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    database: 'inv_api',
+})

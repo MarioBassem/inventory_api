@@ -1,17 +1,27 @@
-const mongoose = require('mongoose');
+const { DataTypes} = require('sequelize');
+const db = require('../connection');
 
-const productSchema = new mongoose.Schema({
-    name: String,
-    price: Number,
-    unit_type: String,
-    stock: Number,
-    category: String,
-    cost: Number,
-    retail_price: Number,
-    other: {},
+const Product = db.define('Product', {
+    product_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+    },
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    summary: {
+        type: DataTypes.STRING,
+        comment: "For product highlights"
+    },
+    content: {
+        type: DataTypes.STRING,
+        comment: "For more product details"
+    }
 });
 
-const product = mongoose.model('Product', productSchema);
-
-module.exports = product;
-
+Product.sync({alter: true}).then(() => {
+    console.log('Products table ready...');
+}).catch(err => {
+    console.log('Product table sync error: ' + err);
+})
