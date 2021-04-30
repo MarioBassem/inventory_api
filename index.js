@@ -14,7 +14,7 @@ db.authenticate().then(() => {
 
 //Routes
 app.use('/products', require('./routes/products'));
-// app.use('/transactions', require('./routes/transactions'));
+app.use('/transactions', require('./routes/transactions'));
 
 
 
