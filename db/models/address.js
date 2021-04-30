@@ -1,0 +1,64 @@
+const {DataTypes} = require('sequelize');
+const db = require('../connection');
+
+const User = require('./user');
+const Order = require('./order');
+
+const Address = db.define('Address', {
+    address_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true
+    },
+    user_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: User,
+            key: 'user_id',
+        }
+    },
+    order_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Order,
+            key: 'order_id'
+        }
+    },
+    first_name: {
+        type: DataTypes.STRING(50),
+    },
+    middle_name: {
+        type: DataTypes.STRING(50),
+    },
+    last_name: {
+        type: DataTypes.STRING(50),
+    },
+    mobile: {
+        type: DataTypes.STRING(15),
+    },
+    email: {
+        type: DataTypes.STRING(50),
+    },
+    line1: {
+        type: DataTypes.STRING(50),
+    },
+    line2: {
+        type: DataTypes.STRING(50),
+    },
+    city: {
+        type: DataTypes.STRING(50),
+    },
+    province: {
+        type: DataTypes.STRING(50),
+    },
+    country: {
+        type: DataTypes.STRING(50),
+    },
+});
+
+Address.sync({alter: true}).then(() => {
+    console.log('Address table ready...');
+}).catch(err => {
+    console.log('Address table sync error: ' + err);
+});
+
+module.exports = Address;
