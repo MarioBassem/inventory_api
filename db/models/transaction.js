@@ -1,5 +1,7 @@
 const {DataTypes} = require('sequelize');
 const db = require('../connection');
+const Order = require('./order');
+const User = require('./user');
 
 const Transaction = db.define('Transaction', {
     transaction_id: {
@@ -8,18 +10,17 @@ const Transaction = db.define('Transaction', {
     },
     user_id: {
         type: DataTypes.INTEGER,
-        // references: {
-        //     model: ,
-        //     key: ,
-
-        // }
+        references: {
+            model: User,
+            key: 'user_id',
+        }
     },
     order_id: {
         type: DataTypes.INTEGER,
-        // references: {
-        //     model: ,
-        //     key: ,
-        // }
+        references: {
+            model: Order,
+            key: 'order_id',
+        }
     },
     code: {
         type: DataTypes.STRING,
@@ -44,4 +45,6 @@ Transaction.sync({alter: true}).then(() => {
     console.log('Transaction table ready...');
 }).catch(err => {
     console.log('Transaction table sync error: ' + err);
-})
+});
+
+module.exports = Transaction;

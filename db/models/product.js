@@ -24,4 +24,6 @@ Product.sync({alter: true}).then(() => {
     console.log('Products table ready...');
 }).catch(err => {
     console.log('Product table sync error: ' + err);
-})
+});
+
+module.exports = Product;
