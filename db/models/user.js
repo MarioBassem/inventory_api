@@ -1,7 +1,7 @@
 const {DataTypes, DATE} = require('sequelize');
 const db = require('../connection');
 
-const User = db.define('User', {
+const User = db.define('user', {
     user_id: {
         type: DataTypes.INTEGER,
         primaryKey: true
@@ -11,22 +11,22 @@ const User = db.define('User', {
         comment: ' It can be Admin, Supplier, Salesperson, and Customer.'
     },
     first_name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
     },
     middle_name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
     },
     last_name: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
     },
     mobile: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(20),
     },
     email: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(75),
     },
     password_hash: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
     },
     registered_at: {
         type: DataTypes.DATEONLY,
@@ -37,7 +37,7 @@ const User = db.define('User', {
         defaultValue: DataTypes.NOW
     },
     intro: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     }
 });
 

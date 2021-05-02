@@ -4,7 +4,7 @@ const db = require('../connection');
 const User = require('./user');
 const Order = require('./order');
 
-const Address = db.define('Address', {
+const Address = db.define('address', {
     address_id: {
         type: DataTypes.INTEGER,
         primaryKey: true

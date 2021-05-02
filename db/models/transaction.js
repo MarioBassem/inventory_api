@@ -3,7 +3,7 @@ const db = require('../connection');
 const Order = require('./order');
 const User = require('./user');
 
-const Transaction = db.define('Transaction', {
+const Transaction = db.define('transaction', {
     transaction_id: {
         type: DataTypes.INTEGER,
         primaryKey: true

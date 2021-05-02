@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize');
 const db = require('../connection');
 const User = require('./user');
 
-const Order = db.define('Order', {
+const Order = db.define('order', {
     order_id: {
         type: DataTypes.INTEGER,
         primaryKey: true
