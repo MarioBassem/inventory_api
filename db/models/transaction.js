@@ -22,17 +22,13 @@ const Transaction = db.define('Transaction', {
             key: 'order_id',
         }
     },
-    code: {
+    payment_id: {
         type: DataTypes.STRING,
         comment: 'The payment id provided by the payment gateway.'
     },
-    payment: {
+    payment_type: {
         type: DataTypes.STRING,
         comment: 'Cash, cash on delivery, cheque, or online.'
-    },
-    status: {
-        type: DataTypes.STRING,
-        comment: 'New, Cancelled, Failed, Pending, Declined, Rejected, and Success.'
     },
     content: {
         type: DataTypes.STRING,
