@@ -10,12 +10,23 @@ const Product = db.define('Product', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    cost_price: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+    },
+    selling_price: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+    },
+    expire_date: {
+        type: DataTypes.DATE,
+    },
     summary: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         comment: "For product highlights"
     },
     content: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         comment: "For more product details"
     }
 });
