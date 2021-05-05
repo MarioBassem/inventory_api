@@ -15,6 +15,13 @@ const Category = db.define('category', {
     },
     title: {
         type: DataTypes.STRING(75),
+        allowNull: false,
+        validate: {
+            len: {
+                args: [1, 75],
+                msg: 'Category title length must be within 1 and 75',
+            }
+        }
     },
     meta_title: {
         type: DataTypes.STRING,
@@ -22,6 +29,7 @@ const Category = db.define('category', {
     },
     slug: {
         type: DataTypes.STRING(100),
+        allowNull: false,
     },
     content: {
         type: DataTypes.TEXT

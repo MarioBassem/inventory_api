@@ -37,6 +37,9 @@ const Address = db.define('address', {
     },
     email: {
         type: DataTypes.STRING(50),
+        validate: {
+            isEmail: true
+        }
     },
     line1: {
         type: DataTypes.STRING(50),

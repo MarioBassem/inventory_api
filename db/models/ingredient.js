@@ -20,7 +20,7 @@ const Ingredient = db.define('ingredient', {
         allowNull: false,
     },
     supplier_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.SMALLINT,
         references: {
             model: User,
             key: 'user_id',

@@ -13,10 +13,11 @@ const Cart = db.define('cart', {
         references: {
             model: User,
             key: 'user_id',
-        }
+        },
+        allowNull: false,
     },
     session_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(75),
     },
     token: {
         type: DataTypes.STRING,
@@ -33,6 +34,9 @@ const Cart = db.define('cart', {
     },
     email: {
         type: DataTypes.STRING(75),
+        validate: {
+            isEmail: true,
+        }
     },
     address_id: {
         type: DataTypes.INTEGER,

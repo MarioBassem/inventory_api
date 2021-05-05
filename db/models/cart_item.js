@@ -16,6 +16,10 @@ const cart_item = db.define('cart_item', {
         },
         allowNull: false,
     },
+    quantity: {
+        type: DataTypes.SMALLINT,
+        allowNull: false,
+    },
     cart_id: {
         type: DataTypes.INTEGER,
         references: {
