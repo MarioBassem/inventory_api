@@ -8,25 +8,57 @@ const User = db.define('user', {
     },
     role_id: {
         type: DataTypes.INTEGER,
-        comment: ' It can be Admin, Supplier, Salesperson, and Customer.'
+        comment: ' It can be Admin, Supplier, Salesperson, and Customer.',
+        allowNull: false,
     },
     first_name: {
         type: DataTypes.STRING(50),
+        allowNull: false,
+        validate: {
+            len: {
+                args: [1, 50],
+                msg: 'First name must have length within 1 and 50'
+            }
+        }
     },
     middle_name: {
         type: DataTypes.STRING(50),
+        validate: {
+            len: {
+                args: [0, 50],
+                msg: 'Middle name must have length less than 50',
+            }
+        }
     },
     last_name: {
         type: DataTypes.STRING(50),
+        allowNull: false,
+        validate: {
+            len: {
+                args: [1, 50],
+                msg: 'Last name must have length within 1 and 50'
+            }
+        }
     },
     mobile: {
         type: DataTypes.STRING(20),
+
     },
     email: {
         type: DataTypes.STRING(75),
+        allowNull: false,
+        unique: true,
+        validate: {
+            isEmail: true,
+            len: {
+                args: [1, 75],
+                msg: 'Email length must be within 1 and 75',
+            }
+        }
     },
     password_hash: {
         type: DataTypes.STRING(50),
+        allowNull: false,
     },
     registered_at: {
         type: DataTypes.DATEONLY,
