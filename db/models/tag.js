@@ -9,12 +9,24 @@ const Tag = db.define('tag', {
     title: {
         type: DataTypes.STRING(50),
         allowNull: false,
+        validate: {
+            len: {
+                args: [1, 50],
+                msg: 'Tag title length must be within 1 and 50',
+            }
+        }
     },
     slug: {
         type: DataTypes.STRING(100),
+        allowNull: false,
+        validate: {
+            args: [1, 100],
+            msg: 'Slug length must be within 1 and 100',
+        }
     },
     content: {
-        type: DataTypes.TEXT
+        type: DataTypes.TEXT,
+        allowNull: true
     },
 });
 

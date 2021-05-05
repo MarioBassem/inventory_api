@@ -7,8 +7,14 @@ const Role = db.define('role', {
         primaryKey: true,
     },
     title: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(20),
         allowNull: false,
+        validate: {
+            len: {
+                args: [1, 20],
+                msg: 'Role title length must be within 1 and 20',
+            }
+        }
     }
 });
 
