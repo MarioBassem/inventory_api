@@ -7,8 +7,14 @@ const Product = db.define('product', {
         primaryKey: true,
     },
     title: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(100),
         allowNull: false,
+        validate: {
+            len: {
+                args: [1, 100],
+                msg: 'Product title length must be within 1 and 100',
+            }
+        }
     },
     cost_price: {
         type: DataTypes.FLOAT,
