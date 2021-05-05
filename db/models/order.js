@@ -13,32 +13,43 @@ const Order = db.define('order', {
             model: User,
             key: 'user_id',
         },
+        allowNull: false,
     },
     type: {
-        type: DataTypes.INTEGER,
-        comment: 'The order type to distinguish among Purchase Order or Customer Order.'
+        type: DataTypes.TINYINT,
+        comment: 'The order type to distinguish among Purchase Order (0) or Customer Order (1).',
+        allowNull: false,
+        validate: {
+            isIn: [[0, 1]]
+        }
     },
     status: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.TINYINT,
         comment: 'The status of the order can be New, Checkout, Paid, Failed, Shipped, Delivered, Returned, and Complete.',
+        allowNull: false,
     },
     sub_total: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
+        allowNull: false,
     },
     item_discount: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
+        allowNull: false,
     },
     tax: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
+        allowNull: false,
     },
     shipping_charges: {
         type: DataTypes.FLOAT,
+        allowNull: false,
     },
     total: {
-        type: DataTypes.FLOAT
+        type: DataTypes.FLOAT,
+        allowNull: false,
     },
     promo: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(20),
     },
     total_discount: {
         type: DataTypes.FLOAT,
@@ -46,10 +57,10 @@ const Order = db.define('order', {
     },
     grand_total: {
         type: DataTypes.FLOAT,
-
+        allowNull: false,
     },
     content: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         comment: 'used to store the additional details of the order.'
     }
 });
