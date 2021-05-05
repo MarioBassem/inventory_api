@@ -12,14 +12,25 @@ const product_review = db.define('prodcut_review', {
         references: {
             model: Product,
             key: 'product_id',
-        }
+        },
+        allowNull: false,
     },
     title: {
         type: DataTypes.STRING(75),
+        validate: {
+            len: {
+                args: [0, 75],
+                msg: 'Product review title length must be less than 75'
+            }
+        }
     },
     rating: {
         type: DataTypes.SMALLINT,
         allowNull: false,
+        validate: {
+            min: 1,
+            max: 5
+        }
     },
     content: {
         type: DataTypes.TEXT,

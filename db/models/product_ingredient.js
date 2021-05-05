@@ -9,14 +9,16 @@ const product_ingredient = db.define('product_ingredient', {
         references: {
             model: Product,
             key: 'product_id',
-        }
+        },
+        allowNull: false,
     },
     ingredient_id: {
         type: DataTypes.INTEGER,
         references: {
             model: Ingredient,
             key: 'ingredient_id',
-        }
+        },
+        allowNull: false,
     }
 }, {
     freezeTableName: true
