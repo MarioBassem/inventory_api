@@ -13,6 +13,10 @@ const Transaction = db.define('transaction', {
         references: {
             model: User,
             key: 'user_id',
+        },
+        allowNull: false,
+        validate: {
+            isNumeric: true,
         }
     },
     order_id: {
@@ -20,15 +24,31 @@ const Transaction = db.define('transaction', {
         references: {
             model: Order,
             key: 'order_id',
+        },
+        allowNull: false,
+        validate: {
+            isNumeric: true
         }
     },
     payment_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
         comment: 'The payment id provided by the payment gateway.'
     },
     payment_type: {
-        type: DataTypes.STRING,
-        comment: 'Cash, cash on delivery, cheque, or online.'
+        type: DataTypes.STRING(20),
+        comment: 'Cash, cash on delivery, cheque, or online.',
+        allowNull: false,
+        validate: {
+            isIn: {
+                args: [['cash', 'cash on delivery', 'cheque', 'online']],
+                msg: 'Payment type must be cash, cash on delivery, cheque, or online.',
+            },
+            isOnlinePayment(value){
+                if(value === 'online' && this.payment_id === null){
+                    throw new Error('Payment id must be provided with online payments');
+                }
+            }
+        }
     },
     content: {
         type: DataTypes.STRING,
