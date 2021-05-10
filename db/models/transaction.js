@@ -55,10 +55,10 @@ const Transaction = db.define('transaction', {
     
 });
 
-Transaction.sync({alter: true}).then(() => {
-    console.log('Transaction table ready...\n');
-}).catch(err => {
-    console.log('Transaction table sync error: ' + err + '\n');
-});
+// Transaction.sync({alter: true}).then(() => {
+//     console.log('Transaction table ready...\n');
+// }).catch(err => {
+//     console.log('Transaction table sync error: ' + err + '\n');
+// });
 
 module.exports = Transaction;

@@ -7,4 +7,4 @@ module.exports = new Sequelize({
     host: 'localhost',
     port: 5432,
     database: 'inv_api',
-})
+});

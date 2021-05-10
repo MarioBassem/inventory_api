@@ -29,10 +29,10 @@ const Ingredient = db.define('ingredient', {
     // }
 });
 
-Ingredient.sync({alter: true}).then(() => {
-    console.log('Ingredient table created...\n');
-}).catch(err => {
-    console.log('Ingredient table sync error: ' + err + '\n');
-});
+// Ingredient.sync({alter: true}).then(() => {
+//     console.log('Ingredient table created...\n');
+// }).catch(err => {
+//     console.log('Ingredient table sync error: ' + err + '\n');
+// });
 
 module.exports = Ingredient;

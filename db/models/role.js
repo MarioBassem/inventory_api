@@ -25,12 +25,12 @@ Role.hasMany(User, {
     onDelete: 'SET DEFAULT',
     onUpdate: 'SET DEFAULT'
 });
-User.belongsTo(Role);
+// User.belongsTo(Role);
 
-Role.sync({alter: true}).then(() => {
-    console.log('Role table ready...\n');
-}).catch(err => {
-    console.log('Role table sync error: ' + err + '\n');
-});
+// Role.sync({alter: true}).then(() => {
+//     console.log('Role table ready...\n');
+// }).catch(err => {
+//     console.log('Role table sync error: ' + err + '\n');
+// });
 
 module.exports = Role;

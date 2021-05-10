@@ -33,10 +33,10 @@ const Category = db.define('category', {
     }
 });
 
-Category.sync({alter: true}).then(() => {
-    console.log('Category table ready...\n');
-}).catch(err => {
-    console.log('Category table sync error: ' + err + '\n');
-});
+// Category.sync({alter: true}).then(() => {
+//     console.log('Category table ready...\n');
+// }).catch(err => {
+//     console.log('Category table sync error: ' + err + '\n');
+// });
 
 module.exports = Category;

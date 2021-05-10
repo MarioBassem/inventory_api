@@ -49,6 +49,7 @@ const Cart = db.define('cart', {
     }
 });
 
+
 Cart.hasMany(cart_item, {
     sourceKey: 'cart_id',
     foreignKey: {
@@ -56,14 +57,17 @@ Cart.hasMany(cart_item, {
 
     },
     onDelete: 'CASCADE',
-    onUpdate: 'RESTRICT'
+    onUpdate: 'CASCADE'
 });
-cart_item.belongsTo(Cart);
+// cart_item.belongsTo(Cart);
 
-Cart.sync({alter: true}).then(() => {
-    console.log('Cart table ready...\n');
-}).catch( err => {
-    console.log('Cart table sync error: ' + err + '\n');
-});
+
+// Cart.sync({force: true}).then(() => {
+//     console.log('Cart table ready...\n');
+// }).catch( err => {
+//     console.log('Cart table sync error: ' + err + '\n');
+// });
+
+
 
 module.exports = Cart;

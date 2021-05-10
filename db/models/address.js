@@ -66,10 +66,10 @@ Address.hasMany(Cart, {
     onUpdate: 'RESTRICT',
 })
 
-Address.sync({alter: true}).then(() => {
-    console.log('Address table ready...\n');
-}).catch(err => {
-    console.log('Address table sync error: ' + err + '\n');
-});
+// Address.sync({alter: true}).then(() => {
+//     console.log('Address table ready...\n');
+// }).catch(err => {
+//     console.log('Address table sync error: ' + err + '\n');
+// });
 
 module.exports = Address;

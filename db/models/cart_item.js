@@ -37,10 +37,10 @@ const cart_item = db.define('cart_item', {
     }
 });
 
-cart_item.sync({alter: true}).then(() => {
-    console.log('cart_item table ready...\n');
-}).catch(err => {
-    console.log('cart_item table sync error: ' + err + '\n');
-});
+// cart_item.sync({force: true}).then(() => {
+//     console.log('cart_item table ready...\n');
+// }).catch(err => {
+//     console.log('cart_item table sync error: ' + err + '\n');
+// });
 
 module.exports = cart_item;

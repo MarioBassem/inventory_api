@@ -75,7 +75,7 @@ Order.hasOne(Address, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT',
 });
-Address.belongsTo(Order);
+// Address.belongsTo(Order);
 
 Order.hasMany(order_item, {
     sourceKey: 'order_id',
@@ -85,12 +85,12 @@ Order.hasMany(order_item, {
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT'
 });
-order_item.belongsTo(Order);
+// order_item.belongsTo(Order);
 
-Order.sync({alter: true}).then(() => {
-    console.log('Order table ready...\n');
-}).catch(err => {
-    console.log('Order table sync error: ' + err + '\n');
-});
+// Order.sync({alter: true}).then(() => {
+//     console.log('Order table ready...\n');
+// }).catch(err => {
+//     console.log('Order table sync error: ' + err + '\n');
+// });
 
 module.exports = Order;

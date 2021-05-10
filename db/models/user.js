@@ -89,7 +89,7 @@ User.hasMany(Address, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT'
 });
-Address.belongsTo(User);
+// Address.belongsTo(User);
 
 User.hasMany(Transaction, {
     sourceKey: 'user_id',
@@ -100,7 +100,7 @@ User.hasMany(Transaction, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT'
 });
-Transaction.belongsTo(User);
+// Transaction.belongsTo(User);
 
 User.hasMany(product_review, {
     sourceKey: 'user_id',
@@ -111,7 +111,7 @@ User.hasMany(product_review, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT',
 });
-product_review.belongsTo(User);
+// product_review.belongsTo(User);
 
 User.hasMany(Order, {
     sourceKey: 'user_id',
@@ -122,7 +122,7 @@ User.hasMany(Order, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT'
 });
-Order.belongsTo(User);
+// Order.belongsTo(User);
 
 User.hasMany(Cart, {
     sourceKey: 'user_id',
@@ -133,7 +133,7 @@ User.hasMany(Cart, {
     onDelete: 'CASCADE',
     onUpdate: 'RESTRICT',
 });
-Cart.belongsTo(User);
+// Cart.belongsTo(User);
 
 User.hasMany(Ingredient, {
     sourceKey: 'user_id',
@@ -144,10 +144,10 @@ User.hasMany(Ingredient, {
     onUpdate: 'RESTRICT',
 })
 
-User.sync({alter: true}).then(() => {
-    console.log('User table ready...\n');
-}).catch(err => {
-    console.log('User table sync error: ' + err + '\n');
-});
+// User.sync({alter: true}).then(() => {
+//     console.log('User table ready...\n');
+// }).catch(err => {
+//     console.log('User table sync error: ' + err + '\n');
+// });
 
 module.exports = User;

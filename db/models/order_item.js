@@ -33,10 +33,10 @@ const order_item = db.define('order_item', {
     }
 });
 
-order_item.sync({alter: true}).then(() => {
-    console.log('order_item table ready...\n');
-}).catch(err => {
-    console.log('order_item table sync error: ' + err + '\n');
-});
+// order_item.sync({alter: true}).then(() => {
+//     console.log('order_item table ready...\n');
+// }).catch(err => {
+//     console.log('order_item table sync error: ' + err + '\n');
+// });
 
 module.exports = order_item;
