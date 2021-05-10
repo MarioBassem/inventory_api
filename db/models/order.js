@@ -1,5 +1,7 @@
 const {DataTypes} = require('sequelize');
 const db = require('../connection');
+const Address = require('./address');
+const order_item = require('./order_item');
 const User = require('./user');
 
 const Order = db.define('order', {
@@ -7,16 +9,16 @@ const Order = db.define('order', {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
-    user_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: User,
-            key: 'user_id',
-        },
-        allowNull: false,
-    },
+    // user_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: User,
+    //         key: 'user_id',
+    //     },
+    //     allowNull: false,
+    // },
     type: {
-        type: DataTypes.TINYINT,
+        type: DataTypes.SMALLINT,
         comment: 'The order type to distinguish among Purchase Order (0) or Customer Order (1).',
         allowNull: false,
         validate: {
@@ -24,7 +26,7 @@ const Order = db.define('order', {
         }
     },
     status: {
-        type: DataTypes.TINYINT,
+        type: DataTypes.SMALLINT,
         comment: 'The status of the order can be New, Checkout, Paid, Failed, Shipped, Delivered, Returned, and Complete.',
         allowNull: false,
     },
@@ -65,10 +67,30 @@ const Order = db.define('order', {
     }
 });
 
+Order.hasOne(Address, {
+    sourceKey: 'order_id', 
+    foreignKey: {
+        name: 'order_id',
+    },
+    onDelete: 'SET NULL',
+    onUpdate: 'RESTRICT',
+});
+Address.belongsTo(Order);
+
+Order.hasMany(order_item, {
+    sourceKey: 'order_id',
+    foreignKey: {
+        name: 'order_id',
+    },
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT'
+});
+order_item.belongsTo(Order);
+
 Order.sync({alter: true}).then(() => {
-    console.log('Order table ready...');
+    console.log('Order table ready...\n');
 }).catch(err => {
-    console.log('Order table sync error: ' + err);
+    console.log('Order table sync error: ' + err + '\n');
 });
 
 module.exports = Order;

@@ -1,28 +1,26 @@
 const {DataTypes} = require('sequelize');
 const db = require('../connection');
-
-const User = require('./user');
-const Order = require('./order');
+const Cart = require('./cart');
 
 const Address = db.define('address', {
     address_id: {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
-    user_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: User,
-            key: 'user_id',
-        }
-    },
-    order_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Order,
-            key: 'order_id'
-        }
-    },
+    // user_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: User,
+    //         key: 'user_id',
+    //     }
+    // },
+    // order_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: Order,
+    //         key: 'order_id'
+    //     }
+    // },
     first_name: {
         type: DataTypes.STRING(50),
     },
@@ -58,10 +56,20 @@ const Address = db.define('address', {
     },
 });
 
+Address.hasMany(Cart, {
+    sourceKey: 'address_id',
+    foreignKey: {
+        name: 'address_id',
+
+    },
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT',
+})
+
 Address.sync({alter: true}).then(() => {
-    console.log('Address table ready...');
+    console.log('Address table ready...\n');
 }).catch(err => {
-    console.log('Address table sync error: ' + err);
+    console.log('Address table sync error: ' + err + '\n');
 });
 
 module.exports = Address;

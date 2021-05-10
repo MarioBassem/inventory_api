@@ -31,9 +31,9 @@ const Tag = db.define('tag', {
 });
 
 Tag.sync({alter: true}).then(() => {
-    console.log('Tag table ready...');
+    console.log('Tag table ready...\n');
 }).catch(err => {
-    console.log('Tag table sync error: ' + err);
+    console.log('Tag table sync error: ' + err + '\n');
 });
 
 module.exports = Tag;

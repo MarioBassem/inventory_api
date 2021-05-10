@@ -1,5 +1,7 @@
 const { DataTypes} = require('sequelize');
 const db = require('../connection');
+const cart_item = require('./cart_item');
+const order_item = require('./order_item');
 
 const Product = db.define('product', {
     product_id: {
@@ -37,10 +39,31 @@ const Product = db.define('product', {
     }
 });
 
+Product.hasMany(order_item, {
+    sourceKey: 'product_id',
+    foreignKey: {
+        name: 'product_id',
+
+    },
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT',
+});
+order_item.belongsTo(Product);
+
+Product.hasMany(cart_item, {
+    sourceKey: 'product_id',
+    foreignKey: {
+        name: 'product_id',
+    },
+    onDelete: 'RESTRICT',
+    onUpdate: 'RESTRICT',
+});
+cart_item.belongsTo(Product);
+
 Product.sync({alter: true}).then(() => {
-    console.log('Products table ready...');
+    console.log('Products table ready...\n');
 }).catch(err => {
-    console.log('Product table sync error: ' + err);
+    console.log('Product table sync error: ' + err + '\n');
 });
 
 module.exports = Product;

@@ -1,35 +1,33 @@
 const {DataTypes} = require('sequelize');
 const db = require('../connection');
-const Order = require('./order');
-const User = require('./user');
 
 const Transaction = db.define('transaction', {
     transaction_id: {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
-    user_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: User,
-            key: 'user_id',
-        },
-        allowNull: false,
-        validate: {
-            isNumeric: true,
-        }
-    },
-    order_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Order,
-            key: 'order_id',
-        },
-        allowNull: false,
-        validate: {
-            isNumeric: true
-        }
-    },
+    // user_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: User,
+    //         key: 'user_id',
+    //     },
+    //     allowNull: false,
+    //     validate: {
+    //         isNumeric: true,
+    //     }
+    // },
+    // order_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: Order,
+    //         key: 'order_id',
+    //     },
+    //     allowNull: false,
+    //     validate: {
+    //         isNumeric: true
+    //     }
+    // },
     payment_id: {
         type: DataTypes.STRING(50),
         comment: 'The payment id provided by the payment gateway.'
@@ -58,9 +56,9 @@ const Transaction = db.define('transaction', {
 });
 
 Transaction.sync({alter: true}).then(() => {
-    console.log('Transaction table ready...');
+    console.log('Transaction table ready...\n');
 }).catch(err => {
-    console.log('Transaction table sync error: ' + err);
+    console.log('Transaction table sync error: ' + err + '\n');
 });
 
 module.exports = Transaction;

@@ -24,10 +24,13 @@ const product_ingredient = db.define('product_ingredient', {
     freezeTableName: true
 });
 
+Product.belongsToMany(Ingredient, { through: product_ingredient });
+Ingredient.belongsToMany(Product, { through: product_ingredient });
+
 product_ingredient.sync({alter: true}).then(() => {
-    console.log('product_ingredient table ready...');     
+    console.log('product_ingredient table ready...\n');     
 }).catch(err => {
-    console.log('product_ingredient table sync error: ' + err);
+    console.log('product_ingredient table sync error: ' + err + '\n');
 });
 
 module.exports = product_ingredient;

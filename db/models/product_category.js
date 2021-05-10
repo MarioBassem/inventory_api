@@ -24,10 +24,13 @@ const Product_Category = db.define('product_category', {
     freezeTableName: true
 });
 
+Product.belongsToMany(Category, {through: Product_Category});
+Category.belongsToMany(Product, {through: Product_Category});
+
 Product_Category.sync({alter: true}).then(() => {
-    console.log('prodcut_category table ready...');
+    console.log('prodcut_category table ready...\n');
 }).catch(err => {
-    console.log('prodcut_category table sync error: ' + err);
+    console.log('prodcut_category table sync error: ' + err + '\n');
 });
 
 module.exports = Product_Category;

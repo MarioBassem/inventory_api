@@ -1,16 +1,26 @@
 const {DataTypes, DATE} = require('sequelize');
 const db = require('../connection');
+const Address = require('./address');
+const Cart = require('./cart');
+const Ingredient = require('./ingredient');
+const Order = require('./order');
+const product_review = require('./product_review');
+const Transaction = require('./transaction');
 
 const User = db.define('user', {
     user_id: {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
-    role_id: {
-        type: DataTypes.INTEGER,
-        comment: ' It can be Admin, Supplier, Salesperson, and Customer.',
-        allowNull: false,
-    },
+    // role_id: {
+    //     type: DataTypes.INTEGER,
+    //     comment: ' It can be Admin, Supplier, Salesperson, and Customer.',
+    //     allowNull: false,
+    //     references: {
+    //         model: Role,
+    //         key: 'role_id',
+    //     }
+    // },
     first_name: {
         type: DataTypes.STRING(50),
         allowNull: false,
@@ -73,10 +83,71 @@ const User = db.define('user', {
     }
 });
 
+User.hasMany(Address, { 
+    sourceKey: 'user_id', 
+    foreignKey: 'user_id',
+    onDelete: 'SET NULL',
+    onUpdate: 'RESTRICT'
+});
+Address.belongsTo(User);
+
+User.hasMany(Transaction, {
+    sourceKey: 'user_id',
+    foreignKey: {
+        name: 'user_id',
+        allowNull: false,
+    },
+    onDelete: 'SET NULL',
+    onUpdate: 'RESTRICT'
+});
+Transaction.belongsTo(User);
+
+User.hasMany(product_review, {
+    sourceKey: 'user_id',
+    foreignKey: {
+        name: 'user_id',
+        allowNull: true
+    },
+    onDelete: 'SET NULL',
+    onUpdate: 'RESTRICT',
+});
+product_review.belongsTo(User);
+
+User.hasMany(Order, {
+    sourceKey: 'user_id',
+    foreignKey: {
+        name: 'user_id',
+        allowNull: false,
+    },
+    onDelete: 'SET NULL',
+    onUpdate: 'RESTRICT'
+});
+Order.belongsTo(User);
+
+User.hasMany(Cart, {
+    sourceKey: 'user_id',
+    foreignKey: {
+        name: 'user_id',
+        allowNull: false,
+    },
+    onDelete: 'CASCADE',
+    onUpdate: 'RESTRICT',
+});
+Cart.belongsTo(User);
+
+User.hasMany(Ingredient, {
+    sourceKey: 'user_id',
+    foreignKey: {
+        name: 'suupplier_id',
+    },
+    onDelete: 'SET NULL',
+    onUpdate: 'RESTRICT',
+})
+
 User.sync({alter: true}).then(() => {
-    console.log('User table ready...');
+    console.log('User table ready...\n');
 }).catch(err => {
-    console.log('User table sync error: ' + err);
+    console.log('User table sync error: ' + err + '\n');
 });
 
 module.exports = User;

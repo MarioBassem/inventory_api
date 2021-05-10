@@ -6,12 +6,9 @@ const Category = db.define('category', {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
+    //How to make a foreign key in the same table
     parent_id: {
         type: DataTypes.INTEGER,
-        references: {
-            model: Category,
-            key: 'category_id',
-        }
     },
     title: {
         type: DataTypes.STRING(75),
@@ -37,9 +34,9 @@ const Category = db.define('category', {
 });
 
 Category.sync({alter: true}).then(() => {
-    console.log('Category table ready...');
+    console.log('Category table ready...\n');
 }).catch(err => {
-    console.log('Category table sync error: ' + err);
+    console.log('Category table sync error: ' + err + '\n');
 });
 
 module.exports = Category;

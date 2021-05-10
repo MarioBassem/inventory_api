@@ -1,5 +1,6 @@
 const {DataTypes} = require('sequelize');
 const db = require('../connection');
+const User = require('./user');
 
 const Role = db.define('role', {
     role_id: {
@@ -18,10 +19,18 @@ const Role = db.define('role', {
     }
 });
 
+Role.hasMany(User, {
+    sourceKey: 'role_id',
+    foreignKey: 'role_id',
+    onDelete: 'SET DEFAULT',
+    onUpdate: 'SET DEFAULT'
+});
+User.belongsTo(Role);
+
 Role.sync({alter: true}).then(() => {
-    console.log('Role table ready...');
+    console.log('Role table ready...\n');
 }).catch(err => {
-    console.log('Role table sync error: ' + err);
+    console.log('Role table sync error: ' + err + '\n');
 });
 
 module.exports = Role;

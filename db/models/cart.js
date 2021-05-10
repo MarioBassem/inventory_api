@@ -1,21 +1,20 @@
 const {DataTypes} = require('sequelize');
 const db = require('../connection');
-const User = require('./user');
-const Address = require('./address');
+const cart_item = require('./cart_item');
 
 const Cart = db.define('cart', {
     cart_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
     },
-    user_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: User,
-            key: 'user_id',
-        },
-        allowNull: false,
-    },
+    // user_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: User,
+    //         key: 'user_id',
+    //     },
+    //     allowNull: false,
+    // },
     session_id: {
         type: DataTypes.STRING(75),
     },
@@ -38,22 +37,33 @@ const Cart = db.define('cart', {
             isEmail: true,
         }
     },
-    address_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Address,
-            key: 'address_id',
-        }
-    },
+    // address_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: Address,
+    //         key: 'address_id',
+    //     }
+    // },
     content: {
         type: DataTypes.TEXT,
     }
 });
 
+Cart.hasMany(cart_item, {
+    sourceKey: 'cart_id',
+    foreignKey: {
+        name: 'cart_id',
+
+    },
+    onDelete: 'CASCADE',
+    onUpdate: 'RESTRICT'
+});
+cart_item.belongsTo(Cart);
+
 Cart.sync({alter: true}).then(() => {
-    console.log('Cart table ready...');
+    console.log('Cart table ready...\n');
 }).catch( err => {
-    console.log('Cart table sync error: ' + err);
+    console.log('Cart table sync error: ' + err + '\n');
 });
 
 module.exports = Cart;
