@@ -4,28 +4,28 @@ const Product = require('./product');
 const Tag = require('./tag');
 
 const product_tag = db.define('product_tag', {
-    product_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Product,
-            key: 'product_id',
-        },
-        allowNull: false,
-    },
-    tag_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Tag,
-            key: 'tag_id',
-        },
-        allowNull: false,
-    }
+    // product_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: Product,
+    //         key: 'product_id',
+    //     },
+    //     allowNull: false,
+    // },
+    // tag_id: {
+    //     type: DataTypes.INTEGER,
+    //     references: {
+    //         model: Tag,
+    //         key: 'tag_id',
+    //     },
+    //     allowNull: false,
+    // }
 }, {
     freezeTableName: true
 });
 
-Product.belongsToMany(Tag, {through: product_tag});
-Tag.belongsToMany(Product, {through: product_tag});
+Product.belongsToMany(Tag, {through: product_tag, sourceKey: 'product_id', foreignKey: 'product_id'});
+Tag.belongsToMany(Product, {through: product_tag, sourceKey: 'tag_id', foreignKey: 'tag_id'});
 
 // product_tag.sync({alter: true}).then(() => {
 //     console.log('prodcut_tag table ready...\n');

@@ -67,14 +67,14 @@ const Order = db.define('order', {
     }
 });
 
-Order.hasOne(Address, {
-    sourceKey: 'order_id', 
-    foreignKey: {
-        name: 'order_id',
-    },
-    onDelete: 'SET NULL',
-    onUpdate: 'RESTRICT',
-});
+// Order.hasOne(Address, {
+//     sourceKey: 'order_id', 
+//     foreignKey: {
+//         name: 'order_id',
+//     },
+//     onDelete: 'SET NULL',
+//     onUpdate: 'RESTRICT',
+// });
 // Address.belongsTo(Order);
 
 Order.hasMany(order_item, {

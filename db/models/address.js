@@ -1,6 +1,6 @@
 const {DataTypes} = require('sequelize');
 const db = require('../connection');
-const Cart = require('./cart');
+const Order = require('./order');
 
 const Address = db.define('address', {
     address_id: {
@@ -56,7 +56,7 @@ const Address = db.define('address', {
     },
 });
 
-Address.hasMany(Cart, {
+Address.hasMany(Order, {
     sourceKey: 'address_id',
     foreignKey: {
         name: 'address_id',
@@ -64,7 +64,7 @@ Address.hasMany(Cart, {
     },
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT',
-})
+});
 
 // Address.sync({alter: true}).then(() => {
 //     console.log('Address table ready...\n');
