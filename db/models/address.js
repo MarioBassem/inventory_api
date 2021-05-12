@@ -7,20 +7,6 @@ const Address = db.define('address', {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
-    // user_id: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //         model: User,
-    //         key: 'user_id',
-    //     }
-    // },
-    // order_id: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //         model: Order,
-    //         key: 'order_id'
-    //     }
-    // },
     first_name: {
         type: DataTypes.STRING(50),
     },
@@ -65,11 +51,5 @@ Address.hasMany(Order, {
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT',
 });
-
-// Address.sync({alter: true}).then(() => {
-//     console.log('Address table ready...\n');
-// }).catch(err => {
-//     console.log('Address table sync error: ' + err + '\n');
-// });
 
 module.exports = Address;

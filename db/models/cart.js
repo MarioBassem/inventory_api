@@ -7,14 +7,6 @@ const Cart = db.define('cart', {
         type: DataTypes.INTEGER,
         primaryKey: true,
     },
-    // user_id: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //         model: User,
-    //         key: 'user_id',
-    //     },
-    //     allowNull: false,
-    // },
     session_id: {
         type: DataTypes.STRING(75),
     },
@@ -37,13 +29,6 @@ const Cart = db.define('cart', {
             isEmail: true,
         }
     },
-    // address_id: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //         model: Address,
-    //         key: 'address_id',
-    //     }
-    // },
     content: {
         type: DataTypes.TEXT,
     }
@@ -59,15 +44,5 @@ Cart.hasMany(cart_item, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
 });
-// cart_item.belongsTo(Cart);
-
-
-// Cart.sync({force: true}).then(() => {
-//     console.log('Cart table ready...\n');
-// }).catch( err => {
-//     console.log('Cart table sync error: ' + err + '\n');
-// });
-
-
 
 module.exports = Cart;

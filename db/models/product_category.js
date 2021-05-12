@@ -1,36 +1,12 @@
-const {DataTypes} = require('sequelize');
 const db = require('../connection');
 const Product = require('./product');
 const Category = require('./category');
 
-const Product_Category = db.define('product_category', {
-    // product_id: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    //     references: {
-    //         model: Product,
-    //         key: 'product_id',
-    //     }
-    // },
-    // category_id: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    //     references: {
-    //         model: Category,
-    //         key: 'category_id'
-    //     }
-    // }
-}, {
+const Product_Category = db.define('product_category', {}, {
     freezeTableName: true
 });
 
 Product.belongsToMany(Category, {through: Product_Category, sourceKey: 'product_id', foreignKey: 'product_id'});
 Category.belongsToMany(Product, {through: Product_Category, sourceKey: 'category_id', foreignKey: 'category_id'});
-
-// Product_Category.sync({alter: true}).then(() => {
-//     console.log('prodcut_category table ready...\n');
-// }).catch(err => {
-//     console.log('prodcut_category table sync error: ' + err + '\n');
-// });
 
 module.exports = Product_Category;

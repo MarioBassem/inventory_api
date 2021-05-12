@@ -1,24 +1,11 @@
 const {DataTypes} = require('sequelize');
 const db = require('../connection');
-// const Product = require('./product');
-// const User = require('./user');
 
 const product_review = db.define('product_review', {
     product_review_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
     },
-    // user_id: {
-        
-    // },
-    // product_id: {
-    //     type: DataTypes.INTEGER,
-    //     references: {
-    //         model: Product,
-    //         key: 'product_id',
-    //     },
-    //     allowNull: false,
-    // },
     title: {
         type: DataTypes.STRING(75),
         validate: {
@@ -41,13 +28,5 @@ const product_review = db.define('product_review', {
         allowNull: false,
     }
 });
-
-// product_review.belongsTo(User);
-
-// product_review.sync({alter: true}).then(() => {
-//     console.log('product_review table ready...\n');
-// }).catch(err => {
-//     console.log('product_review table sync error: ' + err + '\n');
-// });
 
 module.exports = product_review;

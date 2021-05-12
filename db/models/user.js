@@ -12,15 +12,6 @@ const User = db.define('user', {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
-    // role_id: {
-    //     type: DataTypes.INTEGER,
-    //     comment: ' It can be Admin, Supplier, Salesperson, and Customer.',
-    //     allowNull: false,
-    //     references: {
-    //         model: Role,
-    //         key: 'role_id',
-    //     }
-    // },
     first_name: {
         type: DataTypes.STRING(50),
         allowNull: false,
@@ -143,11 +134,5 @@ User.hasMany(Ingredient, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT',
 })
-
-// User.sync({alter: true}).then(() => {
-//     console.log('User table ready...\n');
-// }).catch(err => {
-//     console.log('User table sync error: ' + err + '\n');
-// });
 
 module.exports = User;

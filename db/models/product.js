@@ -49,7 +49,6 @@ Product.hasMany(order_item, {
     onDelete: 'RESTRICT',
     onUpdate: 'RESTRICT',
 });
-// order_item.belongsTo(Product);
 
 Product.hasMany(cart_item, {
     sourceKey: 'product_id',
@@ -68,12 +67,5 @@ Product.hasMany(product_review, {
     onDelete: 'CASCADE',
     onUpdate: 'RESTRICT',
 });
-// cart_item.belongsTo(Product);
-
-// Product.sync({alter: true}).then(() => {
-//     console.log('Products table ready...\n');
-// }).catch(err => {
-//     console.log('Product table sync error: ' + err + '\n');
-// });
 
 module.exports = Product;
