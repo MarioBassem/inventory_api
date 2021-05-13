@@ -1,30 +1,28 @@
-GET http://localhost:3000/products
+GET http://localhost:3000/tags
 
 ###
 
-POST http://localhost:3000/products HTTP/1.1
+POST http://localhost:3000/tags HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "toast",
-    "unit_type": "item",
-    "price": 18,
-    "stock": 20
+    "content": "klwejfoiqwejfiqjwef;oiqwejfoiqwejf",
+    "title": "ay btengan",
+    "slug": "j0f91834jf09834jf934"
 }
 
 ###
 
-DELETE http://localhost:3000/products/6085f5fe0bc13b2559bf07e8
+DELETE http://localhost:3000/tags/1
 
 ###
 
-PUT http://localhost:3000/products/6085f701254a39260f24d3f5
+PUT http://localhost:3000/tags/2
 Content-Type: application/json
 
 {
-    "name": "chocolate",
-    "unit_type": "item",
-    "price": 20,
-    "stock": 20
+    "title": "ay felfel",
+    "slug": "jj392fj034jf994",
+    "content": "owjfpoiqjwepfoiqjwefpoiqjewfpoij"
 }
 

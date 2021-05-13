@@ -8,12 +8,12 @@ const product_ingredient = db.define('product_ingredient', {}, {
 
 Product.belongsToMany(Ingredient, { 
     through: 'product_ingredient',
-    sourceKey: 'product_id',
+    sourceKey: 'id',
     foreignKey: 'product_id',
 });
 Ingredient.belongsToMany(Product, { 
     through: 'product_ingredient',
-    sourceKey: 'ingredient_id',
+    sourceKey: 'id',
     foreignKey: 'ingredient_id',
 });
 

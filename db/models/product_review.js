@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize');
 const db = require('../connection');
 
 const product_review = db.define('product_review', {
-    product_review_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
     },

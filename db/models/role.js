@@ -3,9 +3,10 @@ const db = require('../connection');
 const User = require('./user');
 
 const Role = db.define('role', {
-    role_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true
     },
     title: {
         type: DataTypes.STRING(20),
@@ -20,7 +21,7 @@ const Role = db.define('role', {
 });
 
 Role.hasMany(User, {
-    sourceKey: 'role_id',
+    sourceKey: 'id',
     foreignKey: 'role_id',
     onDelete: 'SET DEFAULT',
     onUpdate: 'SET DEFAULT'

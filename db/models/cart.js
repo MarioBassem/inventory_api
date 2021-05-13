@@ -3,7 +3,7 @@ const db = require('../connection');
 const cart_item = require('./cart_item');
 
 const Cart = db.define('cart', {
-    cart_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
     },
@@ -36,7 +36,7 @@ const Cart = db.define('cart', {
 
 
 Cart.hasMany(cart_item, {
-    sourceKey: 'cart_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'cart_id',
 

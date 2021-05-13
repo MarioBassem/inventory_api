@@ -5,7 +5,7 @@ const order_item = require('./order_item');
 const product_review = require('./product_review');
 
 const Product = db.define('product', {
-    product_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
     },
@@ -41,7 +41,7 @@ const Product = db.define('product', {
 });
 
 Product.hasMany(order_item, {
-    sourceKey: 'product_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'product_id',
 
@@ -51,7 +51,7 @@ Product.hasMany(order_item, {
 });
 
 Product.hasMany(cart_item, {
-    sourceKey: 'product_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'product_id',
     },
@@ -60,7 +60,7 @@ Product.hasMany(cart_item, {
 });
 
 Product.hasMany(product_review, {
-    sourceKey: 'product_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'product_id',
     },

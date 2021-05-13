@@ -3,7 +3,7 @@ const db = require('../connection');
 const order_item = require('./order_item');
 
 const Order = db.define('order', {
-    order_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
@@ -58,7 +58,7 @@ const Order = db.define('order', {
 });
 
 Order.hasMany(order_item, {
-    sourceKey: 'order_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'order_id',
     },

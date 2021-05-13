@@ -3,7 +3,7 @@ const db = require('../connection');
 const Order = require('./order');
 
 const Address = db.define('address', {
-    address_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
@@ -43,7 +43,7 @@ const Address = db.define('address', {
 });
 
 Address.hasMany(Order, {
-    sourceKey: 'address_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'address_id',
 

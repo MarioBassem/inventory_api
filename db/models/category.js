@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize');
 const db = require('../connection');
 
 const Category = db.define('category', {
-    category_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
@@ -30,7 +30,7 @@ const Category = db.define('category', {
 });
 
 Category.hasMany(Category, {
-    sourceKey: 'category_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'parent_id',
         allowNull: true,

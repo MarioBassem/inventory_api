@@ -2,7 +2,7 @@ const {DataTypes} = require('sequelize');
 const db = require('../connection');
 
 const Transaction = db.define('transaction', {
-    transaction_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true
     },

@@ -8,7 +8,7 @@ const product_review = require('./product_review');
 const Transaction = require('./transaction');
 
 const User = db.define('user', {
-    user_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true
     },
@@ -75,7 +75,7 @@ const User = db.define('user', {
 });
 
 User.hasMany(Address, { 
-    sourceKey: 'user_id', 
+    sourceKey: 'id', 
     foreignKey: 'user_id',
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT'
@@ -83,7 +83,7 @@ User.hasMany(Address, {
 // Address.belongsTo(User);
 
 User.hasMany(Transaction, {
-    sourceKey: 'user_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'user_id',
         allowNull: false,
@@ -94,7 +94,7 @@ User.hasMany(Transaction, {
 // Transaction.belongsTo(User);
 
 User.hasMany(product_review, {
-    sourceKey: 'user_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'user_id',
         allowNull: true
@@ -105,7 +105,7 @@ User.hasMany(product_review, {
 // product_review.belongsTo(User);
 
 User.hasMany(Order, {
-    sourceKey: 'user_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'user_id',
         allowNull: false,
@@ -116,7 +116,7 @@ User.hasMany(Order, {
 // Order.belongsTo(User);
 
 User.hasMany(Cart, {
-    sourceKey: 'user_id',
+    sourceKey: 'id',
     foreignKey: {
         name: 'user_id',
         allowNull: false,
@@ -127,9 +127,9 @@ User.hasMany(Cart, {
 // Cart.belongsTo(User);
 
 User.hasMany(Ingredient, {
-    sourceKey: 'user_id',
+    sourceKey: 'id',
     foreignKey: {
-        name: 'suupplier_id',
+        name: 'supplier_id',
     },
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT',
