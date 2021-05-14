@@ -10,7 +10,8 @@ const Transaction = require('./transaction');
 const User = db.define('user', {
     id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true,
     },
     first_name: {
         type: DataTypes.STRING(50),
@@ -58,7 +59,7 @@ const User = db.define('user', {
         }
     },
     password_hash: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(60),
         allowNull: false,
     },
     registered_at: {

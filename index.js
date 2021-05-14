@@ -17,10 +17,9 @@ db.authenticate().then(() => {
 sync();
 
 //Routes
+app.use('/users', require('./routes/users'));
 app.use('/', require('./routes/crud'));
 
-// app.use('/products', require('./routes/products'));
-// app.use('/transactions', require('./routes/transactions'));
 
 
 

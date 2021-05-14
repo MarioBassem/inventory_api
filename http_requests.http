@@ -2,13 +2,14 @@ GET http://localhost:3000/tags
 
 ###
 
-POST http://localhost:3000/tags HTTP/1.1
+POST http://localhost:3000/users HTTP/1.1
 Content-Type: application/json
 
 {
-    "content": "klwejfoiqwejfiqjwef;oiqwejfoiqwejf",
-    "title": "ay btengan",
-    "slug": "j0f91834jf09834jf934"
+    "first_name": "mario",
+    "last_name": "ay btengan",
+    "email": "mariob@mail.com",
+    "password": "12345"
 }
 
 ###
