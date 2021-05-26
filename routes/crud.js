@@ -14,6 +14,8 @@ const Tag = require('../db/models/tag');
 const Transaction = require('../db/models/transaction');
 const User = require('../db/models/user');
 
+const auth = require('../auth/auth');
+
 const map = {
     'users': User,
     'transactions': Transaction,
@@ -30,20 +32,20 @@ const map = {
     'addresses': Address
 };
 
-router.get('/:table_name', async (req, res) => {
+router.get('/:table_name', auth ,async (req, res) => {
     const table = map[req.params.table_name];
     const ret = await table.findAll();
     res.json(ret);
 });
 
-router.post('/:table_name', async (req, res) => {
+router.post('/:table_name', auth, async (req, res) => {
     const table = map[req.params.table_name];
     const body = req.body;
     const ret = await table.create(body);
     res.json(ret);
 });
 
-router.delete('/:table_name/:id', async (req, res) => {
+router.delete('/:table_name/:id', auth, async (req, res) => {
     const table = map[req.params.table_name];
     const id = req.params.id;
     const ret = await table.destroy({where: {
@@ -52,7 +54,7 @@ router.delete('/:table_name/:id', async (req, res) => {
     res.json(ret);
 });
 
-router.put('/:table_name/:id', async (req, res) => {
+router.put('/:table_name/:id', auth, async (req, res) => {
     const table = map[req.params.table_name];
     const id = req.params.id;
     const body = req.body;
@@ -65,4 +67,3 @@ router.put('/:table_name/:id', async (req, res) => {
 });
 
 module.exports = router;
-

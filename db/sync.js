@@ -1,4 +1,5 @@
 const User = require('./models/user');
+const Permission = require('./models/permission');
 const Transaction = require('./models/transaction');
 const Tag = require('./models/tag');
 const Role = require('./models/role');
@@ -17,6 +18,7 @@ const Address = require('./models/address');
 
 const sync = async function(){
     try{
+        await Permission.sync({force: true});
         await Role.sync({force: true});
         await User.sync({force: true});
         await Transaction.sync({force: true});

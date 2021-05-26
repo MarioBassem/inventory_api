@@ -17,16 +17,14 @@ db.authenticate().then(() => {
 })
 
 sync();
+require('dotenv').config();
 
 app.use(passport.initialize());
 
 //Routes
 app.use('/users', require('./routes/users'));
-app.use('/login', require('./routes/login'));
+// app.use('/login', require('./routes/login'));
 app.use('/', require('./routes/crud'));
-
-
-
 
 app.listen(PORT, () => {
     console.log("Server is up and running");
