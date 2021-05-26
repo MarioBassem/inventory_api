@@ -1,4 +1,5 @@
-GET http://localhost:3000/tags
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYXJpb2JAbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoibWFyaW8iLCJwZXJtaXNzaW9ucyI6W10sImlhdCI6MTYyMjA1MTE0MiwiZXhwIjoxNjIyMDUyOTQyfQ.pc0w2E9w4_wQ4-7SiWaB6JjoXLNDQ0rEYVQcGwpksYI
 
 ###
 
@@ -9,7 +10,7 @@ Content-Type: application/json
     "first_name": "mario",
     "last_name": "ay btengan",
     "email": "mariob@mail.com",
-    "password": "12345"
+    "password": "12345789"
 }
 
 ###
