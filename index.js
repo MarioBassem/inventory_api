@@ -1,8 +1,6 @@
 const express = require('express');
 const db = require('./db/connection');
 const sync = require('./db/sync');
-const passport = require('passport');
-require('./auth/passport')(passport);
 
 
 const app = express();
@@ -19,7 +17,6 @@ db.authenticate().then(() => {
 sync();
 require('dotenv').config();
 
-app.use(passport.initialize());
 
 //Routes
 app.use('/users', require('./routes/users'));

@@ -1,6 +1,4 @@
-how to include credentials in every request?
-how to make a permission system?
-4 bits for every table
-do i need a login route if credentials are sent in every request?
+how to get user's role permissions?
+what endpoints to expose?
 
 testing framework

@@ -134,6 +134,7 @@ User.hasMany(Ingredient, {
     },
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT',
-})
+});
+
 
 module.exports = User;

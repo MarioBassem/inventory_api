@@ -15,6 +15,7 @@ const Category = require('./models/category');
 const Cart = require('./models/cart');
 const cart_item = require('./models/cart_item');
 const Address = require('./models/address');
+const permission_role = require('./models/permission_role');
 
 const sync = async function(){
     try{
@@ -35,7 +36,11 @@ const sync = async function(){
         await order_item.sync({force: true});
         await Cart.sync({force: true});
         await cart_item.sync({force: true});
+        await permission_role.sync({force: true});
         console.log('tables ready...\n');
+
+        require('../test/test')();
+
     } catch(err){
         console.log('Sync error: ' + err + '\n');
     }
