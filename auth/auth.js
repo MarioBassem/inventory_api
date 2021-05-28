@@ -19,11 +19,16 @@ module.exports = (permission) => async (req, res, next) => {
             throw new Error('User does not exist!');
         }
 
+        if(user.revoked_toke){
+            throw new Error('Token revoked');
+        }
+
         console.log(JSON.stringify(permissions, null, 2));
         
         check_permissions(payload, permission);
 
         console.log(payload);
+
         next();
     }catch(err){
         console.log('Error: ' + err + '\n');
@@ -31,26 +36,31 @@ module.exports = (permission) => async (req, res, next) => {
 }
 
 async function get_payload(header){
-    const parts = header.split(' ');
-        
-    if(parts[0].toLowerCase() != 'bearer'){
-        throw new Error('Authorization header must start with "Bearer".');
+    try{
+        const parts = header.split(' ');
+            
+        if(parts[0].toLowerCase() != 'bearer'){
+            throw new Error('Authorization header must start with "Bearer".');
+        }
+
+        if(parts.length == 1){
+            throw new Error('Token not found!');
+        }
+
+        if(parts.length > 2){
+            throw new Error('Authorization header must be bearer token');
+        }
+
+        const token = parts[1];
+
+        return await jwt.verify(
+            token,
+            process.env.TOKEN_SECRET
+        );
+    } catch(err){
+        console.log(err + '\n');
     }
-
-    if(parts.length == 1){
-        throw new Error('Token not found!');
-    }
-
-    if(parts.length > 2){
-        throw new Error('Authorization header must be bearer token');
-    }
-
-    const token = parts[1];
-
-    return await jwt.verify(
-        token,
-        process.env.TOKEN_SECRET
-    );
+    
 }
 
 async function check_permissions(payload, permission){

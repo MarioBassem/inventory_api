@@ -1,8 +1,8 @@
 what endpoints to expose?
+
 how is a jwt's expiration refreshed?
 what to do when a session is expired? login, generate new token
-keep a memo of revoked tokens
-crud.js should be internal
-
+building a use case
+naming a restful api's endpoints
 
 testing framework

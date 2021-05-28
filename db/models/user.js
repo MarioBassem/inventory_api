@@ -72,6 +72,10 @@ const User = db.define('user', {
     },
     intro: {
         type: DataTypes.TEXT
+    },
+    revoked_token: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
     }
 });
 
@@ -135,6 +139,5 @@ User.hasMany(Ingredient, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT',
 });
-
 
 module.exports = User;

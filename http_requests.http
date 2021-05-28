@@ -1,5 +1,5 @@
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYXJpb2JAbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoibWFyaW8iLCJwZXJtaXNzaW9ucyI6W10sImlhdCI6MTYyMjA1NDY0MywiZXhwIjoxNjIyMDU2NDQzfQ.9YV0s3GXxqfV2Ge3zrtp9R9zqUUgDbRzHgF86rBVWOk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJtYXJpb2JAbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoibWFyaW8iLCJwZXJtaXNzaW9ucyI6W3sicGVybWlzc2lvbiI6InJlYWQifSx7InBlcm1pc3Npb24iOiJ3cml0ZSJ9XSwiaWF0IjoxNjIyMTcwNTgyLCJleHAiOjE2MjIxNzIzODJ9.ddY7BZi1En-tAkJA9wily_5_weBX0A9pYlQc7V1a7vg
 ###
 
 POST http://localhost:3000/users HTTP/1.1
@@ -10,6 +10,16 @@ Content-Type: application/json
     "last_name": "ay btengan",
     "email": "mariob@mail.com",
     "password": "12345789"
+}
+
+###
+
+POST http://localhost:3000/roles HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtYXJpb2JAbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoibWFyaW8iLCJwZXJtaXNzaW9ucyI6W10sImlhdCI6MTYyMjEzODk4NywiZXhwIjoxNjIyMTQwNzg3fQ.Yw0IxPFb1hRjra3Zs1ODP2xD3he8zfGpZQM1YSJlMns
+
+{
+    "title": "admin"
 }
 
 ###
