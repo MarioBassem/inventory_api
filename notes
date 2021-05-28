@@ -1,4 +1,8 @@
-how to get user's role permissions?
 what endpoints to expose?
+how is a jwt's expiration refreshed?
+what to do when a session is expired? login, generate new token
+keep a memo of revoked tokens
+crud.js should be internal
+
 
 testing framework

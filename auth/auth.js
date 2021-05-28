@@ -1,11 +1,7 @@
-const express = require('express');
-const router = express.Router();
 const jwt = require('jsonwebtoken');
-const Permission = require('../db/models/permission');
-const Role = require('../db/models/role');
 const User = require('../db/models/user');
 
-module.exports = async function(req, res, next){
+module.exports = (permission) => async (req, res, next) => {
     try{
         const header = req.headers.authorization;
         if(!header){
@@ -23,22 +19,9 @@ module.exports = async function(req, res, next){
             throw new Error('User does not exist!');
         }
 
-        const permissions = await Permission.findAll({
-            attributes: ['permission'],
-            include: {
-                model: Role,
-                through: {
-                    where: {
-                        role_id: user.role_id
-                    },
-                },
-                attributes: []
-            },
-        });
-
         console.log(JSON.stringify(permissions, null, 2));
         
-        await check_permissions(payload, permissions);
+        check_permissions(payload, permission);
 
         console.log(payload);
         next();
@@ -70,7 +53,14 @@ async function get_payload(header){
     );
 }
 
-async function check_permissions(payload, permissions){
-    
+async function check_permissions(payload, permission){
+    //check if permissions are included in jwt
+    if(!payload.permissions){
+        throw new Error('Permissions are not included in JWT');
+    }
+    //check if user has right permissions
+    if(!payload.permission.includes(permission)){
+        throw new Error('Permission not found');
+    }
 }
 
