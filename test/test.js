@@ -48,5 +48,4 @@ module.exports = async function(){
     });
     console.log(JSON.stringify(permissions, null, 2));
 
-    // console.log(JSON.stringify(await User.findAll({include: {model: Role}}), null, 2));
 }

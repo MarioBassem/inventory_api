@@ -4,6 +4,7 @@ const Address = require('./address');
 const Cart = require('./cart');
 const Ingredient = require('./ingredient');
 const Order = require('./order');
+const Product = require('./product');
 const product_review = require('./product_review');
 const Transaction = require('./transaction');
 
@@ -132,6 +133,15 @@ User.hasMany(Cart, {
 // Cart.belongsTo(User);
 
 User.hasMany(Ingredient, {
+    sourceKey: 'id',
+    foreignKey: {
+        name: 'supplier_id',
+    },
+    onDelete: 'SET NULL',
+    onUpdate: 'RESTRICT',
+});
+
+User.hasMany(Product, {
     sourceKey: 'id',
     foreignKey: {
         name: 'supplier_id',

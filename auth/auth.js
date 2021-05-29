@@ -29,6 +29,8 @@ module.exports = (permission) => async (req, res, next) => {
 
         console.log(payload);
 
+        req.user = user;
+        
         next();
     }catch(err){
         console.log('Error: ' + err + '\n');
