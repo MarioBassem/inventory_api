@@ -23,14 +23,13 @@ module.exports = (permission) => async (req, res, next) => {
             throw new Error('Token revoked');
         }
 
-        console.log(JSON.stringify(permissions, null, 2));
         
         check_permissions(payload, permission);
 
         console.log(payload);
 
         req.user = user;
-        
+
         next();
     }catch(err){
         console.log('Error: ' + err + '\n');
@@ -70,8 +69,12 @@ async function check_permissions(payload, permission){
     if(!payload.permissions){
         throw new Error('Permissions are not included in JWT');
     }
+    
+    //check if no permission is provided
+    if(!permission) return;
+
     //check if user has right permissions
-    if(!payload.permission.includes(permission)){
+    if(!payload.permissions.includes(permission)){
         throw new Error('Permission not found');
     }
 }
