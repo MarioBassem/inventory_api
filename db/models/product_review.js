@@ -5,6 +5,7 @@ const product_review = db.define('product_review', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
     },
     title: {
         type: DataTypes.STRING(75),

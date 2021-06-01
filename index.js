@@ -20,7 +20,7 @@ require('dotenv').config();
 
 //Routes
 app.use('/signup', require('./routes/signup'));
-app.use('/products', require('./routes/products'));
+app.use('/users', require('./routes/users'));
 // app.use('/login', require('./routes/login'));
 // app.use('/', require('./db/crud'));
 

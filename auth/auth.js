@@ -19,7 +19,7 @@ module.exports = (permission) => async (req, res, next) => {
             throw new Error('User does not exist!');
         }
 
-        if(user.revoked_toke){
+        if(user.revoked_token){
             throw new Error('Token revoked');
         }
 

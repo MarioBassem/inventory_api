@@ -6,5 +6,5 @@ module.exports = new Sequelize({
     dialect: 'postgres',
     host: 'localhost',
     port: 5432,
-    database: 'inv_api',
+    database: 'shop_api',
 });

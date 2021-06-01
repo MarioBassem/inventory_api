@@ -1,6 +1,7 @@
 const User = require('../db/models/user');
 const Role = require('../db/models/role');
 const Permission = require('../db/models/permission');
+const Product = require('../db/models/product');
 
 module.exports = async function(){
 
@@ -46,6 +47,12 @@ module.exports = async function(){
             attributes: []
         },
     });
-    console.log(JSON.stringify(permissions, null, 2));
+    
+    const product = await Product.create({
+        title: 'ahwa',
+        cost_price: '100',
+        selling_price: '200',
+    });
+    user.addProduct(product);
 
 }
