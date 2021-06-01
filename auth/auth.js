@@ -10,9 +10,14 @@ module.exports = (permission) => async (req, res, next) => {
 
         const payload = await get_payload(header);
 
-        const user = await User.findOne({where: {
-            id: payload.id
-        }});
+        const user = await User.findOne({
+            where: {
+                id: payload.id
+            },
+            attributes: {
+                exclude: ['password_hash']
+            }
+        });
 
         // check if user exists
         if(!user){

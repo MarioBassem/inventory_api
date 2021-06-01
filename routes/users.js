@@ -1,5 +1,4 @@
 const express = require('express');
-const { Op } = require('sequelize');
 const router = express.Router();
 const auth = require('../auth/auth');
 const Product = require('../db/models/product');
@@ -10,15 +9,34 @@ const logError = require('../error_log');
 
 router.get('/profile', auth(''), async (req, res) => {
     try{
-        const user = await User.findOne({
+        res.json(req.user);
+    }catch(err){
+        logError(err);
+    }
+});
+
+router.put('/profile', auth(''), async (req, res) => {
+    try{
+        res.json(await User.update(
+            req.body,
+            {
+                where: {
+                    id: req.user.id
+                }
+            }
+        ));
+    }catch(err){
+        logError(err);
+    }
+});
+
+router.delete('/profile', auth(''), async (req, res) => {
+    try{
+        res.json(await User.destroy({
             where: {
-                id: req.user.id,
-            },
-            attributes: ['id', 'first_name', 'middle_name', 'last_name', 'email', 'mobile', 'intro']
-        });
-        if(!user) throw new Error('User does not exist');
-        if(user.revoked_token) throw new Error('Revoked token');
-        res.json(user);
+                id: req.user.id
+            }
+        }));
     }catch(err){
         logError(err);
     }
@@ -83,22 +101,6 @@ router.post('/profile/reviews', auth(''), async (req, res) => {
     }catch(err) {
         logError(err);
     }
-});
-
-router.put('/:id', auth(''), (req, res) => {
-
-});
-
-router.delete('/:id', auth(''), (req, res) => {
-
-});
-
-router.post('/:id/addresses', auth(''), (req, res) => {
-
-});
-
-router.delete('/:id', auth(''), (req, res) => {
-
 });
 
 module.exports = router;
