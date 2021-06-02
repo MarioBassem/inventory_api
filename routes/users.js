@@ -6,7 +6,7 @@ const product_review = require('../db/models/product_review');
 const User = require('../db/models/user');
 const logError = require('../error_log');
 
-
+//get profile info
 router.get('/profile', auth(''), async (req, res) => {
     try{
         res.json(req.user);
@@ -15,6 +15,7 @@ router.get('/profile', auth(''), async (req, res) => {
     }
 });
 
+//update profile info
 router.put('/profile', auth(''), async (req, res) => {
     try{
         res.json(await User.update(
@@ -30,6 +31,7 @@ router.put('/profile', auth(''), async (req, res) => {
     }
 });
 
+//delete profile
 router.delete('/profile', auth(''), async (req, res) => {
     try{
         res.json(await User.destroy({
@@ -42,6 +44,7 @@ router.delete('/profile', auth(''), async (req, res) => {
     }
 });
 
+//get user products
 router.get('/products', auth(''), async (req, res) => {
     try{
         const products = await Product.findAll({
@@ -55,6 +58,7 @@ router.get('/products', auth(''), async (req, res) => {
     }
 });
 
+//create new user product
 router.post('/products', auth(''), async (req, res) => {
     try{
         const user = await User.findOne({
@@ -71,6 +75,7 @@ router.post('/products', auth(''), async (req, res) => {
     }
 });
 
+//get user reviews, or identified review
 router.get('/profile/reviews', auth(''), async (req, res) => {
     try{
         const where = {
@@ -87,6 +92,7 @@ router.get('/profile/reviews', auth(''), async (req, res) => {
     }
 });
 
+//create new review
 router.post('/profile/reviews', auth(''), async (req, res) => {
     try{
         const user = await User.findOne({
