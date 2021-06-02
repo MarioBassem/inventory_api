@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../auth/auth');
+const Address = require('../db/models/address');
 const Product = require('../db/models/product');
 const product_review = require('../db/models/product_review');
 const User = require('../db/models/user');
@@ -108,5 +109,52 @@ router.post('/profile/reviews', auth(''), async (req, res) => {
         logError(err);
     }
 });
+
+//handling user addresses
+//get user addresses
+router.get('/profile/addresses', auth(''), async (req, res) => {
+    try{
+        res.json(await Address.findAll({
+            where: {
+                user_id: req.user.id
+            }
+        }));
+    }catch(err){
+        logError(err);
+    }
+});
+
+router.post('/profile/addresses', auth(''), async (req, res) => {
+    try{
+        const address = await Address.create(req.body);
+        const user = req.user;
+        user.addAddress(address);
+        res.json(address);
+    }catch(err){
+        logError(err);
+    }
+});
+
+router.put('/profile/addressses', auth(''), async (req, res) => {
+    try{
+        res.json(await Address.update(req.body, {
+            where: {
+                user_id: req.user.id
+            }
+        }));
+    }catch(err){
+        logError(err);
+    }
+})
+
+/*
+user has addresses - crud
+user has carts - crud
+user has orders - create, read only
+user makes transactions - create, read
+user categorizes products
+user tags products
+user provides ingredients
+*/
 
 module.exports = router;
