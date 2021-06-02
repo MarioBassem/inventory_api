@@ -2,7 +2,7 @@ const { DataTypes} = require('sequelize');
 const db = require('../connection');
 const cart_item = require('./cart_item');
 const order_item = require('./order_item');
-const product_review = require('./product_review');
+const Review = require('./review');
 
 const Product = db.define('product', {
     id: {
@@ -60,7 +60,7 @@ Product.hasMany(cart_item, {
     onUpdate: 'RESTRICT',
 });
 
-Product.hasMany(product_review, {
+Product.hasMany(Review, {
     sourceKey: 'id',
     foreignKey: {
         name: 'product_id',

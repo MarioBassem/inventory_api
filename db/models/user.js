@@ -5,7 +5,7 @@ const Cart = require('./cart');
 const Ingredient = require('./ingredient');
 const Order = require('./order');
 const Product = require('./product');
-const product_review = require('./product_review');
+const Review = require('./review');
 const Transaction = require('./transaction');
 
 const User = db.define('user', {
@@ -99,7 +99,7 @@ User.hasMany(Transaction, {
 });
 // Transaction.belongsTo(User);
 
-User.hasMany(product_review, {
+User.hasMany(Review, {
     sourceKey: 'id',
     foreignKey: {
         name: 'user_id',
@@ -108,7 +108,7 @@ User.hasMany(product_review, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT',
 });
-// product_review.belongsTo(User);
+// Review.belongsTo(User);
 
 User.hasMany(Order, {
     sourceKey: 'id',

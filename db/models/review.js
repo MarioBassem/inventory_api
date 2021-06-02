@@ -1,7 +1,7 @@
 const {DataTypes} = require('sequelize');
 const db = require('../connection');
 
-const product_review = db.define('product_review', {
+const Review = db.define('review', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -30,4 +30,4 @@ const product_review = db.define('product_review', {
     }
 });
 
-module.exports = product_review;
+module.exports = Review;

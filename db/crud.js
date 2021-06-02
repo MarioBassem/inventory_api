@@ -5,7 +5,7 @@ const Category = require('./models/category');
 const Ingredient = require('./models/ingredient');
 const order_item = require('./models/order_item');
 const Order = require('./models/order');
-const product_review = require('./models/product_review');
+const Review = require('./models/review');
 const Product = require('./models/product');
 const Role = require('./models/role');
 const Tag = require('./models/tag');
@@ -18,7 +18,7 @@ const map = {
     'tags': Tag,
     'roles': Role,
     'products': Product,
-    'product_reviews': product_review,
+    'reviews': Review,
     'orders': Order,
     'order_items': order_item,
     'ingredients': Ingredient,

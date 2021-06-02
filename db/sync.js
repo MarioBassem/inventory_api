@@ -5,7 +5,7 @@ const Tag = require('./models/tag');
 const Role = require('./models/role');
 const Product = require('./models/product');
 const product_tag = require('./models/product_tag');
-const product_review = require('./models/product_review');
+const Review = require('./models/review');
 const product_ingredient = require('./models/product_ingredient');
 const product_category = require('./models/product_category');
 const Order = require('./models/order');
@@ -28,7 +28,7 @@ const sync = async function(){
         await Ingredient.sync({force: true});
         await Category.sync({force: true});
         await product_tag.sync({force: true});
-        await product_review.sync({force: true});
+        await Review.sync({force: true});
         await product_ingredient.sync({force: true});
         await product_category.sync({force: true});
         await Address.sync({force: true});
