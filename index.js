@@ -23,6 +23,7 @@ app.use('/signup', require('./routes/signup'));
 app.use('/users', require('./routes/users'));
 app.use('/products', require('./routes/products'));
 app.use('/transaction-management', require('./routes/transaction_management'));
+app.use('/role-management', require('./routes/role_management'));
 
 app.listen(PORT, () => {
     console.log("Server is up and running");

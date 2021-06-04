@@ -1,5 +1,5 @@
 GET http://localhost:3000/users/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJtYXJpb2JAbWFpbC5jb20iLCJmaXJzdF9uYW1lIjoibWFyaW8iLCJwZXJtaXNzaW9ucyI6W3sicGVybWlzc2lvbiI6InJlYWQifSx7InBlcm1pc3Npb24iOiJ3cml0ZSJ9XSwiaWF0IjoxNjIyNTU4MTYxLCJleHAiOjE2MjI1NTk5NjF9.xLN5lf6QigvLRHHJDDuqw8BPTQlMfbpW08mByRX19P0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJtYXJpb2IxQG1haWwuY29tIiwiZmlyc3RfbmFtZSI6Im1hcmlvIiwicGVybWlzc2lvbnMiOlt7InBlcm1pc3Npb24iOiJyZWFkIn0seyJwZXJtaXNzaW9uIjoid3JpdGUifV0sImlhdCI6MTYyMjgzMDAwNywiZXhwIjoxNjIyODMxODA3fQ.3gvcjs_E7al7JTS4xZjSZbzxEE9Wb6xc4gcH39gDacM
 ###
 
 POST http://localhost:3000/signup HTTP/1.1
@@ -48,4 +48,16 @@ Content-Type: application/json
 {
     "email": "mariob@mail.com",
     "password": "12345"
+}
+
+post http://localhost:3000/role-management/ 
+Content-Type: application/application/json
+
+{
+    "role_title": "admin",
+    "permissions": [
+        "read", 
+        "write",
+        "read/write"
+    ]
 }

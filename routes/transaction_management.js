@@ -2,6 +2,7 @@ const express = require('express');
 const Transaction = require('../db/models/transaction');
 const router = express.Router();
 const logError = require('../error_log');
+const auth = require('../auth/auth');
 
 router.get('/', auth(''), async(req, res) => {
     try{
@@ -50,3 +51,5 @@ router.delete('/:id', auth(''), async (req, res) => {
         logError(err);
     }
 });
+
+module.exports = router;
