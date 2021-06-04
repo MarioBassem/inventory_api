@@ -90,7 +90,8 @@ router.put('/reviews/:id', auth(''), async(req, res) => {
     try{
         res.json(await Review.update(req.body, {
             where: {
-                id: req.params.id
+                id: req.params.id,
+                user_id: req.user.id
             }
         }));
     }catch(err){
@@ -102,12 +103,15 @@ router.delete('/reviews/:id', auth(''), async(req, res) => {
     try{
         res.json(await Review.destroy({
             where: {
-                id: req.params.id
+                id: req.params.id,
+                user_id: req.user.id
             }
         }));
     }catch(err){
         logError(err);
     }
-})
+});
+
+
 
 module.exports = router;

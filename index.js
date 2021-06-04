@@ -22,8 +22,7 @@ require('dotenv').config();
 app.use('/signup', require('./routes/signup'));
 app.use('/users', require('./routes/users'));
 app.use('/products', require('./routes/products'));
-// app.use('/login', require('./routes/login'));
-// app.use('/', require('./db/crud'));
+app.use('/transaction-management', require('./routes/transaction_management'));
 
 app.listen(PORT, () => {
     console.log("Server is up and running");

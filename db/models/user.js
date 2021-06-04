@@ -86,7 +86,6 @@ User.hasMany(Address, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT'
 });
-// Address.belongsTo(User);
 
 User.hasMany(Transaction, {
     sourceKey: 'id',
@@ -97,7 +96,6 @@ User.hasMany(Transaction, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT'
 });
-// Transaction.belongsTo(User);
 
 User.hasMany(Review, {
     sourceKey: 'id',
@@ -108,7 +106,6 @@ User.hasMany(Review, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT',
 });
-// Review.belongsTo(User);
 
 User.hasMany(Order, {
     sourceKey: 'id',
@@ -119,9 +116,8 @@ User.hasMany(Order, {
     onDelete: 'SET NULL',
     onUpdate: 'RESTRICT'
 });
-// Order.belongsTo(User);
 
-User.hasMany(Cart, {
+User.hasOne(Cart, {
     sourceKey: 'id',
     foreignKey: {
         name: 'user_id',
@@ -130,7 +126,6 @@ User.hasMany(Cart, {
     onDelete: 'CASCADE',
     onUpdate: 'RESTRICT',
 });
-// Cart.belongsTo(User);
 
 User.hasMany(Ingredient, {
     sourceKey: 'id',

@@ -6,6 +6,7 @@ const Cart = db.define('cart', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
     },
     session_id: {
         type: DataTypes.STRING(75),
@@ -33,7 +34,6 @@ const Cart = db.define('cart', {
         type: DataTypes.TEXT,
     }
 });
-
 
 Cart.hasMany(cart_item, {
     sourceKey: 'id',

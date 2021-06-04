@@ -52,7 +52,8 @@ const update = async function(table_name, body, id){
         return await table.update(body, {
             where: {
                 id: id
-            }
+            },
+            
         });
     }catch(err){
         console.log(err + '\n');

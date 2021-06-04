@@ -1,14 +1,13 @@
 const express = require('express');
-const { where } = require('sequelize/types');
 const router = express.Router();
 const auth = require('../auth/auth');
 const Address = require('../db/models/address');
-const Product = require('../db/models/product');
-const Review = require('../db/models/review');
+const Cart = require('../db/models/cart');
+const cart_item = require('../db/models/cart_item');
 const User = require('../db/models/user');
 const logError = require('../error_log');
 
-//get profile info
+//handling profile info
 router.get('/profile', auth(''), async (req, res) => {
     try{
         res.json(req.user);
@@ -17,7 +16,6 @@ router.get('/profile', auth(''), async (req, res) => {
     }
 });
 
-//update profile info
 router.put('/profile', auth(''), async (req, res) => {
     try{
         res.json(await User.update(
@@ -33,7 +31,6 @@ router.put('/profile', auth(''), async (req, res) => {
     }
 });
 
-//delete profile
 router.delete('/profile', auth(''), async (req, res) => {
     try{
         res.json(await User.destroy({
@@ -47,7 +44,6 @@ router.delete('/profile', auth(''), async (req, res) => {
 });
 
 //handling user addresses
-//get user addresses
 router.get('/profile/addresses', auth(''), async (req, res) => {
     try{
         const where = {
@@ -91,7 +87,7 @@ router.delete('/profile/addresses', auth(''), async (req, res) => {
         const where = {
             user_id: req.user.id
         };
-        if(req.query.id !== undefined) where.id = req.params.id;
+        if(req.query.id !== undefined) where.id = req.query.id;
         res.json(await Address.delete(req.body, {
             where: where
         }));
@@ -100,14 +96,23 @@ router.delete('/profile/addresses', auth(''), async (req, res) => {
     }
 });
 
-/*
-user has addresses - crud
-user has carts - crud
-user has orders - create, read only
-user makes transactions - create, read
-user categorizes products
-user tags products
-user provides ingredients
-*/
+//handling user cart
+router.get('/profile/cart', auth(''), async (req, res) => {
+    try{
+        const cart = await Cart.findOne({
+            where:{
+                user_id: req.user.id,
+            },
+            attributes: ['id']
+        });
+        res.json(await cart_item.findAll({
+            where:{
+                cart_id: cart.id
+            }
+        }));
+    }catch(err){
+        logError(err);
+    }
+});
 
 module.exports = router;
